@@ -2,6 +2,7 @@ package com.example.album.service;
 
 import com.example.album.domain.entity.Album;
 import com.example.album.domain.request.AlbumRequest;
+import com.example.album.domain.request.LikeCountUpdateRequest;
 import com.example.album.domain.request.UserUpdateRequest;
 import com.example.album.domain.response.AlbumResponse;
 import com.example.album.repository.AlbumRepository;
@@ -35,6 +36,7 @@ public class AlbumService {
         album.setImgPath(albumRequest.getImgPath());
     }
 
+
     @Transactional
     public void memberUpdateInAlbum(
             Long memberId, UserUpdateRequest userUpdateRequest
@@ -45,9 +47,9 @@ public class AlbumService {
     }
 
     @Transactional
-    public void likeCountUpdate(UUID boardId, Integer count) {
-        Album album = albumRepository.findById(boardId).get();
-        album.setLikeCount(album.getLikeCount() + count);
+    public void likeCountUpdate(LikeCountUpdateRequest likeCountUpdateRequest) {
+        Album album = albumRepository.findById(likeCountUpdateRequest.getBoardId()).get();
+        album.setLikeCount(album.getLikeCount() + likeCountUpdateRequest.getCount());
     }
 
     /*@Transactional

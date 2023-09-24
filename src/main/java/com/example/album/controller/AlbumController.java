@@ -1,6 +1,7 @@
 package com.example.album.controller;
 
 import com.example.album.domain.request.AlbumRequest;
+import com.example.album.domain.request.LikeCountUpdateRequest;
 import com.example.album.domain.request.UserUpdateRequest;
 import com.example.album.domain.response.AlbumResponse;
 import com.example.album.service.AlbumService;
@@ -55,10 +56,9 @@ public class AlbumController {
         albumService.updateBoardMember(memberUpdateRequest, memberId);
     }
 */
-    @PutMapping("/likeCountUpdate/{albumId}")
-    public void updateLikeCount(@PathVariable("albumId") UUID albumId,
-                                @RequestBody Integer count) {
-        albumService.likeCountUpdate(albumId, count);
+    @PutMapping("/likeCountUpdate")
+    public void updateLikeCount(LikeCountUpdateRequest likeCountUpdateRequest) {
+        albumService.likeCountUpdate(likeCountUpdateRequest);
     }
 
     //어떻게 구현할지 좀 생각
