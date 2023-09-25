@@ -12,6 +12,7 @@ import lombok.Setter;
 public class UserUpdateRequest {
     private String memberName;
     private String memberImage;
+    private Long memberId;
 }
 
 

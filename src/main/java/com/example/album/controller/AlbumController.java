@@ -43,11 +43,10 @@ public class AlbumController {
     }
 
     @PutMapping("/memberid/{memberid}")
-    public void memberUpdateInAlbum(
-            @PathVariable("memberid") Long memberId,
-            @RequestBody UserUpdateRequest UserUpdateRequest
-            ){
-        albumService.memberUpdateInAlbum(memberId,UserUpdateRequest);
+    public void memberUpdateInAlbum(@PathVariable("memberid") Long memberId, @RequestBody UserUpdateRequest userUpdateRequest
+    ){
+        userUpdateRequest.setMemberId(memberId);
+        albumService.memberUpdateInAlbum(userUpdateRequest);
     }
 
   /*  @PutMapping("/updatemember/{memberId}")

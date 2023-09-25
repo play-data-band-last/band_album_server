@@ -38,12 +38,8 @@ public class AlbumService {
 
 
     @Transactional
-    public void memberUpdateInAlbum(
-            Long memberId, UserUpdateRequest userUpdateRequest
-    ){
-        System.out.println(userUpdateRequest.getMemberName());
-        System.out.println(userUpdateRequest.getMemberImage());
-        albumRepository.updateMemberInAlbum(userUpdateRequest, memberId);
+    public void memberUpdateInAlbum(UserUpdateRequest userUpdateRequest){
+        albumRepository.updateMemberInAlbum(userUpdateRequest, userUpdateRequest.getMemberId());
     }
 
     @Transactional
