@@ -1,9 +1,6 @@
 package com.example.album.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +14,10 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "Albums", indexes = {
+        @Index(name = "communityId_index", columnList = "communityId"),
+        @Index(name = "memberId_index", columnList = "memberId")
+})
 public class Album {
     @Id
     @GeneratedValue
