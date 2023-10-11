@@ -5,10 +5,16 @@ import com.example.album.domain.request.LikeCountUpdateRequest;
 import com.example.album.domain.request.UserUpdateRequest;
 import com.example.album.service.AlbumService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.RetryableTopic;
+import org.springframework.kafka.core.KafkaOperations;
+import org.springframework.kafka.listener.CommonErrorHandler;
+import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
+import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.stereotype.Service;
+import org.springframework.util.backoff.FixedBackOff;
 
 @Service
 @RequiredArgsConstructor
