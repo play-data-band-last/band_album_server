@@ -1,10 +1,7 @@
 package com.example.album.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,6 +25,7 @@ public class Album {
     private String memberImgPath;
     private String imgPath;
     private Integer likeCount;
+    @Builder.Default
     private Boolean isValid = Boolean.TRUE;
 
 }
