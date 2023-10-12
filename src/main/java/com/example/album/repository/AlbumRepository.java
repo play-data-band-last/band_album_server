@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface AlbumRepository extends JpaRepository<Album, UUID>, CustomAlbumRepository {
@@ -16,6 +17,6 @@ public interface AlbumRepository extends JpaRepository<Album, UUID>, CustomAlbum
             "where a.communityId = :communityId")
     Page<AlbumResponse> getByCommunityId(Long communityId, PageRequest pageRequest);
 
-
+    Optional<Album> getAlbumByMemberId(Long userId);
 
 }

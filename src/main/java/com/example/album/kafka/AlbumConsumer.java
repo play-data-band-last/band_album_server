@@ -32,6 +32,13 @@ public class AlbumConsumer {
         albumService.memberUpdateInAlbum(userUpdateRequest);
     }
 
+    @RetryableTopic
+    @KafkaListener(topics = TopicConfig.memberDelete)
+    public void memberDeleteListener(Long userId) {
+        albumService.memberDeleteHandler(userId);
+    }
+
+
     @DltHandler
     public void processDltMessage(String dltMessage) {
         // DLT 토픽에서 메시지를 처리합니다. (예: 로깅 또는 추가 조사)

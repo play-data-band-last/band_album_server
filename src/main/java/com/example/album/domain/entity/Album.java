@@ -28,5 +28,6 @@ public class Album {
     private String memberImgPath;
     private String imgPath;
     private Integer likeCount;
+    private Boolean isValid = Boolean.TRUE;
 
 }

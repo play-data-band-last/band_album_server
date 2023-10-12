@@ -60,10 +60,9 @@ public class AlbumController {
         albumService.likeCountUpdate(likeCountUpdateRequest);
     }
 
-    //어떻게 구현할지 좀 생각
     @DeleteMapping("/{albumid}")
     public void albumDelete(@PathVariable("albumid") UUID albumid){
-
+        albumService.albumDelete(albumid);
     }
 
 }
