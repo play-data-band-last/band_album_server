@@ -14,7 +14,8 @@ public interface AlbumRepository extends JpaRepository<Album, UUID>, CustomAlbum
 
     @Query("select new com.example.album.domain.response.AlbumResponse(a.id, a.communityId, a.memberId, a.memberName,a.memberImgPath,a.imgPath ,a.likeCount) " +
             "from Album a " +
-            "where a.communityId = :communityId")
+            "where a.communityId = :communityId " +
+            "and a.isValid = true ")
     Page<AlbumResponse> getByCommunityId(Long communityId, PageRequest pageRequest);
 
     Optional<Album> getAlbumByMemberId(Long userId);
