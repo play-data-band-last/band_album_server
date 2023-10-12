@@ -72,8 +72,7 @@ public class AlbumService {
 
     @Transactional
     public void memberDeleteHandler(Long userId){
-        Album album = albumRepository.getAlbumByMemberId(userId).get();
-        album.setIsValid(Boolean.FALSE);
+       albumRepository.memberDelete(userId);
     }
 
 }

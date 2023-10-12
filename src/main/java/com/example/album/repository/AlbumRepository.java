@@ -5,7 +5,9 @@ import com.example.album.domain.response.AlbumResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -19,5 +21,12 @@ public interface AlbumRepository extends JpaRepository<Album, UUID>, CustomAlbum
     Page<AlbumResponse> getByCommunityId(Long communityId, PageRequest pageRequest);
 
     Optional<Album> getAlbumByMemberId(Long userId);
+
+
+    @Modifying
+    @Query("update Album a " +
+            "set a.isValid = false ," +
+            "where a.memberId = :memberId")
+    void memberDelete(@Param("memberId") Long userId);
 
 }
