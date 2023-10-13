@@ -5,6 +5,7 @@ import com.example.album.domain.request.AlbumRequest;
 import com.example.album.domain.request.LikeCountUpdateRequest;
 import com.example.album.domain.request.UserUpdateRequest;
 import com.example.album.domain.response.AlbumResponse;
+import com.example.album.kafka.dto.ListenerDto;
 import com.example.album.repository.AlbumRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -38,14 +39,17 @@ public class AlbumService {
 
 
     @Transactional
-    public void memberUpdateInAlbum(UserUpdateRequest userUpdateRequest){
-        albumRepository.updateMemberInAlbum(userUpdateRequest, userUpdateRequest.getMemberId());
+    public void memberUpdateInAlbum(ListenerDto listenerDto){
+        albumRepository.updateMemberInAlbum(new UserUpdateRequest(listenerDto.getMemberName(),
+                listenerDto.getMemberImage(),
+                listenerDto.getMemberId()),
+                listenerDto.getMemberId());
     }
 
     @Transactional
-    public void likeCountUpdate(LikeCountUpdateRequest likeCountUpdateRequest) {
-        Album album = albumRepository.findById(likeCountUpdateRequest.getBoardId()).get();
-        album.setLikeCount(album.getLikeCount() + likeCountUpdateRequest.getCount());
+    public void likeCountUpdate(ListenerDto listenerDto) {
+        Album album = albumRepository.findById(listenerDto.getBoardId()).get();
+        album.setLikeCount(album.getLikeCount() + listenerDto.getCount());
     }
 
     /*@Transactional

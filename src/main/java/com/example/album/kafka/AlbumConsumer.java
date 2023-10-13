@@ -3,6 +3,7 @@ package com.example.album.kafka;
 import com.example.album.domain.request.AlbumRequest;
 import com.example.album.domain.request.LikeCountUpdateRequest;
 import com.example.album.domain.request.UserUpdateRequest;
+import com.example.album.kafka.dto.ListenerDto;
 import com.example.album.service.AlbumService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -22,20 +23,20 @@ public class AlbumConsumer {
     private final AlbumService albumService;
     @RetryableTopic
     @KafkaListener(topics = TopicConfig.album)
-    public void listen(LikeCountUpdateRequest likeCountUpdateRequest) {
-        albumService.likeCountUpdate(likeCountUpdateRequest);
+    public void listen(ListenerDto listenerDto) {
+        albumService.likeCountUpdate(listenerDto);
     }
 
     @RetryableTopic
     @KafkaListener(topics = TopicConfig.memberUpdate)
-    public void updateMember(UserUpdateRequest userUpdateRequest) {
-        albumService.memberUpdateInAlbum(userUpdateRequest);
+    public void updateMember(ListenerDto listenerDto) {
+        albumService.memberUpdateInAlbum(listenerDto);
     }
 
     @RetryableTopic
     @KafkaListener(topics = TopicConfig.memberDelete)
-    public void memberDeleteListener(Long userId) {
-        albumService.memberDeleteHandler(userId);
+    public void memberDeleteListener(ListenerDto listenerDto) {
+        albumService.memberDeleteHandler(listenerDto.getUserId());
     }
 
 
