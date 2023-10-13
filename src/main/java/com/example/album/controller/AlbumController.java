@@ -4,6 +4,7 @@ import com.example.album.domain.request.AlbumRequest;
 import com.example.album.domain.request.LikeCountUpdateRequest;
 import com.example.album.domain.request.UserUpdateRequest;
 import com.example.album.domain.response.AlbumResponse;
+import com.example.album.kafka.dto.ListenerDto;
 import com.example.album.service.AlbumService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -55,10 +56,7 @@ public class AlbumController {
         albumService.updateBoardMember(memberUpdateRequest, memberId);
     }
 */
-    @PutMapping("/likeCountUpdate")
-    public void updateLikeCount(LikeCountUpdateRequest likeCountUpdateRequest) {
-        albumService.likeCountUpdate(likeCountUpdateRequest);
-    }
+
 
     @DeleteMapping("/{albumid}")
     public void albumDelete(@PathVariable("albumid") UUID albumid){
